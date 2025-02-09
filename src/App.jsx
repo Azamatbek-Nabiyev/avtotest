@@ -8,10 +8,16 @@ import { useEffect, useState } from 'react';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 
 function App() {
-  let isAuth = null;
+  const [isAuth, setIsAuth] = useState(() => {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  });
 
   useEffect(() => {
-    isAuth = localStorage.getItem('user');
+    const user = localStorage.getItem('user');
+    if (user) {
+      setIsAuth(JSON.parse(user));
+    }
   }, []);
 
   return (
@@ -22,8 +28,8 @@ function App() {
           <Route path='/' element={<Home />} />
         </Route>
 
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp setIsAuth={setIsAuth} />} />
+        <Route path='/login' element={<Login setIsAuth={setIsAuth} />} />
       </Routes>
     </div>
   );

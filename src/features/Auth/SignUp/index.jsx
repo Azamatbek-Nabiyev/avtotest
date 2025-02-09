@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../../../supabase/client';
 import { Link, useNavigate } from 'react-router';
 
-export default () => {
+export default ({ setIsAuth }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,7 +10,6 @@ export default () => {
   });
 
   const navigate = useNavigate();
-
   function handleChange(event) {
     setFormData((prev) => {
       return {
@@ -36,6 +35,7 @@ export default () => {
         alert(error);
       } else {
         localStorage.setItem('user', JSON.stringify(data));
+        setIsAuth(data);
         navigate('/');
       }
     } catch (e) {
