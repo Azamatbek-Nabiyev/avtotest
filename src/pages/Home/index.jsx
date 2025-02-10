@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default () => {
   return (
@@ -34,9 +35,11 @@ export default () => {
               <li>3. Imtihon topshirish</li>
             </ul>
           </div>
-          <button className='border border-gray-300 px-2 mt-5 w-52 h-11 hover:bg-white hover:text-black transition-all cursor-pointer'>
-            Kirish
-          </button>
+          <Link to='/topicbased'>
+            <button className='border border-gray-300 px-2 mt-5 w-52 h-11 hover:bg-white hover:text-black transition-all cursor-pointer'>
+              Kirish
+            </button>
+          </Link>
         </div>
       </div>
 

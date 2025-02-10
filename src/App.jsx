@@ -1,11 +1,12 @@
 import './App.css';
 import { Routes, Route } from 'react-router';
 import Header from './components/layout/Header';
-import Home from './features/Home';
+import Home from './pages/Home';
 import SignUp from './features/Auth/SignUp/index';
 import Login from './features/Auth/Login/index';
 import { useEffect, useState } from 'react';
 import ProtectedRoutes from './utils/ProtectedRoutes';
+import TopicBasedQuiz from './pages/TopicBasedQuiz';
 
 function App() {
   const [isAuth, setIsAuth] = useState(() => {
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route element={<ProtectedRoutes user={isAuth} />}>
           <Route path='/' element={<Home />} />
+          <Route path='/topicbased' element={<TopicBasedQuiz />} />
         </Route>
 
         <Route path='/signup' element={<SignUp setIsAuth={setIsAuth} />} />
